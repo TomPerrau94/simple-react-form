@@ -1,44 +1,49 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Form = ({ name, email, password, confirmPassword }) => {
-  const [newName, setNewName] = useState("");
-  const [newEmail, setNewEmail] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmNewPassword, setConfirmNewPassword] = useState("");
-  const [isRegistered, setIsRegistered] = useState(false);
-
+const Form = ({
+  //   isRegistered,
+  setIsRegistered,
+  name,
+  setName,
+  email,
+  setEmail,
+  password,
+  setPassword,
+  confirmPassword,
+  setConfirmPassword,
+}) => {
   const handleNameChange = (event) => {
     const value = event.target.value;
-    setNewName(value);
+    setName(value);
   };
 
   const handleEmailChange = (event) => {
     const value = event.target.value;
-    setNewEmail(value);
+    setEmail(value);
   };
 
   const handlePasswordChange = (event) => {
     const value = event.target.value;
-    setNewPassword(value);
+    setPassword(value);
   };
 
   const handleConfirmPasswordChange = (event) => {
     const value = event.target.value;
-    setConfirmNewPassword(value);
+    setConfirmPassword(value);
   };
 
   const handleSubmit = (event) => {
-    if (confirmNewPassword !== newPassword) {
-      event.preventDefault();
+    event.preventDefault();
+    if (confirmPassword !== password) {
       alert("Vos 2 mots de passe ne sont pas identiques");
     } else {
-      event.preventDefault();
       setIsRegistered(true);
     }
   };
 
   return (
     <div>
+      <h1 className="formTitle">Create Account</h1>
       <form className="form" onSubmit={handleSubmit}>
         <span className="inputTitle">Name</span>
         <input

@@ -1,37 +1,22 @@
-import React, { useState } from "react";
-import Form from "./Form";
+import React from "react";
 
-const Results = ({ name, email, password }) => {
-  const [infoEditing, setInfoEditing] = useState(true);
+const Results = ({ setIsRegistered, name, email, password }) => {
   return (
-    <div>
-      {infoEditing ? (
-        <div>
-          <div className="results">
-            <h1>Results</h1>
-            <ul className="resultInfos">
-              <li>Name : {name}</li>
-              <li>Email : {email}</li>
-              <li>Password : {password}</li>
-            </ul>
-            <button
-              className="inputButton"
-              onClick={() => {
-                setInfoEditing(false);
-              }}
-            >
-              Edit information
-            </button>
-          </div>
-        </div>
-      ) : (
-        <Form
-          name={name}
-          email={email}
-          password={password}
-          confirmPassword={password}
-        />
-      )}
+    <div className="results">
+      <h1>Results</h1>
+      <ul className="resultInfos">
+        <li>Name : {name}</li>
+        <li>Email : {email}</li>
+        <li>Password : {password}</li>
+      </ul>
+      <button
+        className="inputButton"
+        onClick={() => {
+          setIsRegistered(false);
+        }}
+      >
+        Edit information
+      </button>
     </div>
   );
 };
