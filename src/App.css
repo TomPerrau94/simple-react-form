@@ -1,38 +1,112 @@
-.App {
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+:root {
+  --purple-: #5d48d3;
+  --darkpurple-: #3e308d;
+  --grey-10: #fcf9f9;
+  --grey-20: #f2f2f2;
+  --grey-30: #d3d3d3;
+}
+
+h1 {
   text-align: center;
+  font-size: 32px;
+  font-weight: 700;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  height: calc(100vh - 104px);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.form {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: var(--grey-10);
+  border: 1px solid var(--grey-30);
+  border-radius: 5px;
+}
+
+.inputTitle {
+  padding: 10px 0;
+  font-weight: 500;
+}
+
+.inputButton {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: var(--purple-);
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: 0.2s;
+  border: 0;
+}
+
+.inputButton:hover {
+  background-color: var(--darkpurple-);
+}
+
+.footer {
+  background-color: var(--purple-);
+  padding: 40px;
+  text-align: center;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.footer p {
+  line-height: 150%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.footer a {
+  color: white;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.footer a:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.resultInfos {
+  margin: 50px 0 30px 0;
+  padding: 30px;
+  background-color: var(--grey-20);
+  border-radius: 5px;
+}
+
+.resultInfos li:not(:last-child) {
+  margin-bottom: 20px;
 }

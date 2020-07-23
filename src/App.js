@@ -1,24 +1,101 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+// import Form from "./components/Form";
+import Results from "./components/Results";
+import Footer from "./components/Footer";
 
 function App() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isRegistered, setIsRegistered] = useState(false);
+
+  const handleNameChange = (event) => {
+    const value = event.target.value;
+    setName(value);
+  };
+
+  const handleEmailChange = (event) => {
+    const value = event.target.value;
+    setEmail(value);
+  };
+
+  const handlePasswordChange = (event) => {
+    const value = event.target.value;
+    setPassword(value);
+  };
+
+  const handleConfirmPasswordChange = (event) => {
+    const value = event.target.value;
+    setConfirmPassword(value);
+  };
+
+  const handleSubmit = (event) => {
+    if (confirmPassword !== password) {
+      event.preventDefault();
+      alert("Vos 2 mots de passe ne sont pas identiques");
+    } else {
+      event.preventDefault();
+      setIsRegistered(true);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className="container">
+        {isRegistered ? (
+          <Results name={name} email={email} password={password} />
+        ) : (
+          <div>
+            <h1 className="formTitle">Create Account</h1>
+            <form className="form" onSubmit={handleSubmit}>
+              <span className="inputTitle">Name</span>
+              <input
+                placeholder="John Doe"
+                type="text"
+                name="name"
+                value={name}
+                onChange={handleNameChange}
+              />
+              <span className="inputTitle">Email</span>
+              <input
+                placeholder="john.doe@mail.com"
+                type="email"
+                name="email"
+                value={email}
+                onChange={handleEmailChange}
+              />
+              <span className="inputTitle">Password</span>
+              <input
+                placeholder="JoHnDoE2020"
+                type="password"
+                name="password"
+                value={password}
+                onChange={handlePasswordChange}
+              />
+              <span className="inputTitle">Confirm password</span>
+              <input
+                placeholder="JoHnDoE2020"
+                type="password"
+                name="confirmPassword"
+                value={confirmPassword}
+                onChange={handleConfirmPasswordChange}
+              />
+              <input className="inputButton" type="submit" value="Register" />
+            </form>
+          </div>
+        )}
+      </div>
+      <Footer
+        className="footer"
+        technoLink="https://fr.reactjs.org/"
+        technoName="React"
+        companyLink="https://www.lereacteur.io"
+        companyName="le Reacteur"
+        authorLink="https://github.com/TomPerrau94"
+        authorName="Tom Perrau"
+      />
     </div>
   );
 }
