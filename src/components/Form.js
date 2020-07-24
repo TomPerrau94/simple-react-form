@@ -1,4 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Check from "./Check";
+
+// function viewPassword() {
+//   const input = document.getElementsByClassName("passwordInput");
+//   if (input.type === "password") {
+//     input.type === "text";
+//   } else {
+//     input.type === "password";
+//   }
+// }
 
 const Form = ({
   //   isRegistered,
@@ -32,10 +43,17 @@ const Form = ({
     setConfirmPassword(value);
   };
 
+  const [input1Type, setInput1Type] = useState("password");
+  const [input2Type, setInput2Type] = useState("password");
+  const [check, setCheck] = useState(true);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (confirmPassword !== password) {
-      alert("Vos 2 mots de passe ne sont pas identiques");
+      console.log(document.getElementById("passwordInput"));
+      document.getElementById("passwordInput").style.borderColor = "red";
+      document.getElementById("confirmPasswordInput").style.borderColor = "red";
+      setCheck(false);
     } else {
       setIsRegistered(true);
     }
@@ -61,22 +79,67 @@ const Form = ({
           value={email}
           onChange={handleEmailChange}
         />
-        <span className="inputTitle">Password</span>
-        <input
-          placeholder="JoHnDoE2020"
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePasswordChange}
-        />
-        <span className="inputTitle">Confirm password</span>
-        <input
-          placeholder="JoHnDoE2020"
-          type="password"
-          name="confirmPassword"
-          value={confirmPassword}
-          onChange={handleConfirmPasswordChange}
-        />
+        <div className="passwordElement">
+          <span className="inputTitle">Password</span>
+
+          <input
+            id="passwordInput"
+            placeholder="JoHnDoE2020"
+            type={input1Type}
+            name="password"
+            value={password}
+            onChange={handlePasswordChange}
+            required
+          />
+          <span
+            className="viewPassword"
+            onClick={() => {
+              if (input1Type === "password") {
+                setInput1Type("text");
+              } else {
+                setInput1Type("password");
+              }
+            }}
+          >
+            {input1Type === "password" ? (
+              <FontAwesomeIcon icon="eye" />
+            ) : (
+              <FontAwesomeIcon icon="eye-slash" />
+            )}
+          </span>
+        </div>
+        <div className="passwordElement">
+          <span className="inputTitle">Confirm password</span>
+
+          <input
+            id="confirmPasswordInput"
+            placeholder="JoHnDoE2020"
+            type={input2Type}
+            name="confirmPassword"
+            value={confirmPassword}
+            onChange={handleConfirmPasswordChange}
+            required
+          />
+          <span
+            className="viewPassword"
+            onClick={() => {
+              if (input2Type === "password") {
+                setInput2Type("text");
+              } else {
+                setInput2Type("password");
+              }
+            }}
+          >
+            {input2Type === "password" ? (
+              <FontAwesomeIcon icon="eye" />
+            ) : (
+              <FontAwesomeIcon icon="eye-slash" />
+            )}
+          </span>
+          <span>
+            {check ? null : <Check check={check} setCheck={setCheck} />}
+          </span>
+        </div>
         <input className="inputButton" type="submit" value="Register" />
       </form>
     </div>

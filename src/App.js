@@ -108,6 +108,14 @@ import Form from "./components/Form";
 import Results from "./components/Results";
 import Footer from "./components/Footer";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faEye,
+  faEyeSlash,
+  faExclamationCircle,
+} from "@fortawesome/free-solid-svg-icons";
+library.add(faEye, faEyeSlash, faExclamationCircle);
+
 const App = () => {
   const [isRegistered, setIsRegistered] = useState(false);
   const [name, setName] = useState("");
